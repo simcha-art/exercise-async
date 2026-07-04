@@ -1,9 +1,18 @@
 import fs from "fs/promises";
 
 export function readFile() {
-    return fs.readFile("./data/movies.json", "utf8").then(data => JSON.parse(data))
+    try{
+        return fs.readFile("./data/movies.json", "utf8").then(data => JSON.parse(data))
+    } catch(err) {
+        console.error("failed reading file: ", err.message)
+    }
     }
 
 export function writeFile(moviesList) {
-    fs.writeFile("./data/movies.json", JSON.stringify(moviesList, null, 4))
+    try {
+        fs.writeFile("./data/movies.json", JSON.stringify(moviesList, null, 2));
+    } catch(err) {
+        console.error("failed writing to file: ", err.message)
+    }
+
 }
