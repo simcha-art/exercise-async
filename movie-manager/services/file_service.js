@@ -10,7 +10,7 @@ export function readFile() {
 
 export function writeFile(moviesList) {
     try {
-        fs.writeFile("./data/movies.json", JSON.stringify(moviesList, null, 2));
+        fs.writeFile("./data/movies.json", JSON.stringify(moviesList, null, 2)),then(() => console.log("write to file successfully"));
     } catch(err) {
         console.error("failed writing to file: ", err.message)
     }
