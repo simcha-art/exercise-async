@@ -27,26 +27,26 @@ async function createMovieManager () {
         return allMovies.find((movie) => movie.id === id);
     }
 
-    function createMovie(name, genre, year, rate) {
+    async function createMovie(name, genre, year, rate) {
         const id = getId();
         const newMovie = { id, name, genre, year, rate };
         allMovies.push(newMovie);
-        writeFile(allMovies);
+        await writeFile(allMovies);
         return showMovieById(id);
     }
 
-    function deleteMovie(id) {
+    async function deleteMovie(id) {
         const index = allMovies.findIndex((movie) => movie.id === id);
         if (index < 0) return;
         allMovies.splice(index, 1);
-        writeFile(allMovies);
+        await writeFile(allMovies);
     }
 
-    function updateRate(id, rate) {
+    async function updateRate(id, rate) {
         const movie = allMovies.find((movie) => movie.id === id);
         if (movie) {
             movie.rate = rate;
-            writeFile(allMovies);
+            await writeFile(allMovies);
         }
     }
 
